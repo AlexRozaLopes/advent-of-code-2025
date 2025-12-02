@@ -34,17 +34,14 @@ pub fn new_password(input: &str) -> i32 {
 
         let rotation = pass.chars().next().unwrap();
         let number: i32 = pass[1..].parse().unwrap();
-        let start = point; // posição antes da rotação
+        let start = point;
 
         match rotation {
             'R' => {
-                // quantas vezes cruza 0 durante a rotação (inclui clique final)
                 count += (start + number) / 100;
                 point = start + number;
             }
             'L' => {
-                // k0 = primeiro passo positivo em que atinge 0:
-                // se start == 0, o primeiro k é 100; caso contrário é start.
                 let k0 = if start == 0 { 100 } else { start };
                 if number >= k0 {
                     count += 1 + (number - k0) / 100;
@@ -54,18 +51,13 @@ pub fn new_password(input: &str) -> i32 {
             _ => {}
         }
 
-        // normaliza 0..99
         point = ((point % 100) + 100) % 100;
 
-        // **NÃO** adicionar count aqui quando point == 0 — já foi contado acima, se aplicável.
     }
 
     count
 }
 
-/// Conta quantas vezes o ponteiro aponta pra 0 durante/ao final de todas as rotações.
-/// input: conteúdo do arquivo (uma instrução por linha, ex: "L68\nR12\n...")
-/// Retorna i32 com o total.
 pub fn password_method_0x434c49434b(input: &str) -> i32 {
     let mut count: i32 = 0;
     let mut pos: i32 = 50; // posição inicial
