@@ -1,2 +1,2 @@
 pub mod day_one;
-mod day_two;
+pub mod day_two;

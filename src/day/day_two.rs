@@ -1,32 +1,32 @@
 struct Range {
-    min: i32,
-    max: i32,
+    min: i64,
+    max: i64,
 }
 
 impl Range {
-    pub fn new(min: i32, max: i32) -> Self {
+    pub fn new(min: i64, max: i64) -> Self {
         Self { min, max }
     }
 }
 
-fn sum_invalid_ids(input: &str) -> i32 {
+pub fn sum_invalid_ids(input: &str) -> i64 {
     input
         .split(',')
         .map(|r| {
             let mut it = r.split('-');
-            let min = it.next().unwrap().parse::<i32>().unwrap();
-            let max = it.next().unwrap().parse::<i32>().unwrap();
+            let min = it.next().unwrap().trim().parse::<i64>().unwrap();
+            let max = it.next().unwrap().trim().parse::<i64>().unwrap();
             Range::new(min, max)
         })
         .map(|range| {
             (range.min..=range.max)
                 .filter(|id| is_invalid_id(id))
-                .sum::<i32>()
+                .sum::<i64>()
         })
         .sum()
 }
 
-fn is_invalid_id(id: &i32) -> bool {
+fn is_invalid_id(id: &i64) -> bool {
     let s = id.to_string();
     let chars = s.chars().collect::<Vec<_>>();
     let mid = chars.len() / 2;
