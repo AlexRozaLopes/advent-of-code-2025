@@ -23,4 +23,9 @@ fn main() {
         "Day 2: Gift Shop: PART ONE - ANSWER {}",
         day_two::sum_invalid_ids(include_str!("data/day-two"))
     );
+
+    println!(
+        "Day 2: Gift Shop: PART TWO - ANSWER {}",
+        day_two::sum_invalid_ids_part_two(include_str!("data/day-two"))
+    );
 }
