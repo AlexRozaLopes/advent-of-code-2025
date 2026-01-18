@@ -42,7 +42,27 @@ fn is_invalid_id(id: &i64) -> bool {
         return true;
     }
 
-    return false;
+    false
+}
+
+fn is_repeated_pattern(num: i64) -> bool {
+    let s = num.to_string();
+    let len = s.len();
+
+    for i in 2..=len {
+        if len % i != 0 {
+            continue;
+        }
+
+        let part_len = len / i;
+        let part = &s[..part_len];
+
+        if part.repeat(i) == s {
+            return true;
+        }
+    }
+
+    false
 }
 
 #[cfg(test)]
