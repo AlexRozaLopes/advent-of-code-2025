@@ -1,4 +1,4 @@
-use crate::day::{day_one, day_two};
+use crate::day::{day_one, day_two,day_three};
 
 mod day;
 
@@ -27,5 +27,10 @@ fn main() {
     println!(
         "Day 2: Gift Shop: PART TWO - ANSWER {}",
         day_two::sum_invalid_ids_part_two(include_str!("data/day-two"))
+    );
+
+    println!(
+        "Day 3: Lobby: PART ONE - ANSWER {}",
+        day_three::total_output_joltage(include_str!("data/day_three"))
     );
 }
